@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Bank.Abstractions/Bank.Abstractions.csproj" />
+    <Project Path="src/Bank.Api/Bank.Api.csproj" />
+    <Project Path="src/Bank.Grains/Bank.Grains.csproj" />
+    <Project Path="src/Bank.Silo/Bank.Silo.csproj" />
+  </Folder>
+</Solution>
