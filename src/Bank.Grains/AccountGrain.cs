@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Orleans.Placement;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Bank.Grains
         [Id(0)] public decimal Balance { get; set; }
     }
 
+    [RandomPlacement]
     public class AccountGrain(
         [PersistentState("account", "bank")] IPersistentState<AccountState> state,
         ILogger<AccountGrain> logger) : Grain, IAccountGrain

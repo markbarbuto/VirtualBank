@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: bank
+      POSTGRES_USER: bank
+      POSTGRES_PASSWORD: bank
+    volumes:
+      - ./db/postgres:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "bank"]
+      interval: 2s
+      retries: 15
+
+  silo:
+    image: bank-silo
+    restart: on-failure
+    environment:
+      ConnectionStrings__db: Host=db;Database=bank;Username=bank;Password=bank
+    depends_on:
+      db: { condition: service_healthy }
+
+  api:
+    image: bank-api
+    restart: on-failure
+    environment:
+      ConnectionStrings__db: Host=db;Database=bank;Username=bank;Password=bank
+    ports:
+      - "5001:8080"
+    depends_on: [silo]
+
+volumes:
+  pgdata:
