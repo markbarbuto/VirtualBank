@@ -5,4 +5,7 @@
     <Project Path="src/Bank.Grains/Bank.Grains.csproj" />
     <Project Path="src/Bank.Silo/Bank.Silo.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Bank.Grains.Tests/Bank.Grains.Tests.csproj" />
+  </Folder>
 </Solution>
